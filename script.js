@@ -8,7 +8,7 @@ const gridSize = 20;
 let snake = [{ x: 10, y: 10 }];
 let food = generateFood();
 let highScore = 0;
-let direction = 'right';
+let direction = 'down';
 let gameInterval;
 let gameSpeedDelay = 200;
 let gameStarted = false;
@@ -111,7 +111,19 @@ function handleKeyPress(event) {
                 }
                 direction = 'up';
                 break;
+            case 'w':
+                if (direction === 'down'){
+                    return;
+                }
+                direction = 'up';
+                break;
             case 'ArrowDown':
+                if (direction === 'up'){
+                    return;
+                }
+                direction = 'down';
+                break;
+            case 's':
                 if (direction === 'up'){
                     return;
                 }
@@ -123,7 +135,19 @@ function handleKeyPress(event) {
                 }
                 direction = 'left';
                 break;
+            case 'a':
+                if (direction === 'right'){
+                    return;
+                }
+                direction = 'left';
+                break;
             case 'ArrowRight':
+                if (direction === 'left'){
+                    return;
+                }
+                direction = 'right';
+                break;
+            case 'd':
                 if (direction === 'left'){
                     return;
                 }
@@ -136,7 +160,6 @@ function handleKeyPress(event) {
 document.addEventListener('keydown', handleKeyPress);
 
 function increaseSpeed() {
-    //   console.log(gameSpeedDelay);
     if (gameSpeedDelay > 150) {
         gameSpeedDelay -= 5;
     } else if (gameSpeedDelay > 100) {
